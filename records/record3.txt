@@ -1,0 +1,20 @@
+Record 3: CVE-2023-4863 (libwebp)
+
+Profile: “Desktop Kit”: Google Chrome 118.0.5993.88, Microsoft Edge 116.0.1938.54, and an in-house tool “photo-tool” that bundles libwebp, version not recorded.
+Fetched: 2026-11-02. Record last modified: 2026-06-17.
+
+Affected components: 20 entries for 12 products from 9 vendors, all vulnerable: true. Relevant here: Chrome below 116.0.5845.187, Edge (edge_chromium) below 116.0.1938.81, and webmproject:libwebp below 1.3.2.
+Platform context: none.
+Match: Chrome 118.0.5993.88 → no match. Edge 116.0.1938.54 → match (54 is below 81). photo-tool → unknown, because the libwebp version isn’t known.
+Evidence (Edge):
+Present: yes. In range: yes.
+Precondition: the user opens a crafted page or image. Plausible for a browser.
+Reachable: yes, it’s the image decoding path.
+Exposed: yes, it browses the internet (assumed).
+Mitigations: unknown. A browser sandbox exists, but this flaw was exploited in the wild.
+photo-tool: all items unknown until the bundled library version is found.
+Signals: CVSS v3.1 8.8 High (NVD primary, and a second entry from CISA ADP, the source in the SSVC entry). SSVC: exploitation active, automatable no, technical impact total. The NVD record includes CISA KEV fields (added 2023-09-13), but I haven’t confirmed that against CISA’s own catalogue. EPSS not checked.
+Decision (overall): affected, because of Edge. Chrome: not affected. photo-tool: under investigation.
+Justification: not applicable for the overall status. For Chrome: vulnerable_code_not_present (a version after the fix).
+What would change my mind: Edge being updated past 116.0.1938.81, photo-tool’s bundled libwebp turning out to be 1.3.2 or later (then not affected), or Edge being isolated from untrusted content.
+Not verified: the libwebp version in photo-tool and how it’s linked, whether the Edge build number is correct and whether the browser auto-updates, current KEV and EPSS values, and whether any of Edge’s version bounds apply to other release channels.

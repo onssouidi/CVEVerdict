@@ -1,0 +1,20 @@
+Record 1: CVE-2006-2916 (aRts)
+
+Profile: “Legacy Audio Workstation”: aRts 1.2 from the distribution package, Linux kernel 5.15, aRts binary not setuid root, daemon not network-exposed.
+Fetched: 2026-11-02. Record last modified: 2026-06-16.
+
+Affected components: kde:arts 1.0 and 1.2 (exact versions in the CPE).
+Platform context: Linux kernel from 2.6.0 (vulnerable: false), joined to aRts by an AND.
+Match: aRts 1.2 → match. Linux 5.15 → match. The AND of two matches → match.
+Evidence:
+Component present: yes (assumed).
+Version in affected range: yes.
+Precondition met (aRts runs setuid root): no (assumed). The description and NVD’s evaluator note both say the product is vulnerable only when setuid root.
+Vulnerable code reachable: yes, it’s installed, but without setuid root there’s no privilege to gain.
+Exposed to an attacker: local users only (the attack vector is local).
+Mitigations: the default configuration is not setuid root. Red Hat’s comment says it doesn’t ship it that way.
+Signals: CVSS v3.1 7.8 High (NVD primary). CVSS v2 6.0 Medium (NVD primary). The NVD record contains no CISA exploitation fields, but I haven’t checked the CISA catalogue yet. EPSS not checked.
+Decision: not affected.
+Justification: inline_mitigations_already_exist. The setuid condition the flaw needs is absent, so the local privilege escalation has nothing to escalate. No standard label fits perfectly, because this is a missing precondition more than a mitigation. Another reasonable choice is to leave it under investigation until the file mode is verified.
+What would change my mind: the setuid bit being set on the aRts binary, a package upgrade that changes permissions, or evidence that the daemon runs with elevated privileges another way.
+Not verified: the actual file permissions (ls -l), whether Red Hat’s statement covers this distribution, whether aRts is used at all, and the CVE’s affected data being “n/a”, so only NVD’s configuration supports the version ranges.

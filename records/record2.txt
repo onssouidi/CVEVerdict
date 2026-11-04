@@ -1,0 +1,20 @@
+Record 2: CVE-2024-23647 (Authentik)
+
+Profile: “Internal SSO”: authentik 2024.2.1, OAuth2 login for two internal apps.
+Fetched: 2026-11-02. Record last modified: 2026-06-17.
+
+Affected components: goauthentik:authentik below 2023.8.7, or from 2023.10.0 up to but not including 2023.10.7.
+Platform context: none. One node, no AND.
+Match: 2024.2.1 is not below 2023.8.7, and is not between 2023.10.0 and 2023.10.7 → no match. Compare the version parts as numbers.
+Evidence:
+Component present: yes.
+Version in affected range: no.
+Precondition met (OAuth2 client relying on PKCE): not relevant when the version is not affected. Unknown.
+Code reachable: yes, the code is there but the downgrade bug is fixed in this release.
+Exposed: the login flow is reachable by users.
+Mitigations: the fix itself.
+Signals: CVSS v3.1 6.5 Medium (GitHub, secondary) and 8.8 High (NVD, primary). CISA’s assessment: exploitation none, automatable no, technical impact total. KEV and EPSS not checked.
+Decision: not affected.
+Justification: vulnerable_code_not_present. The version is later than the fixed releases, so the vulnerable code was changed.
+What would change my mind: the installed version turning out to be older than recorded, or a rolled-back or custom build.
+Not verified: the real running version (I’d check the instance itself, not the inventory), that 2024.2.1 contains the fix (I’m relying on the advisory’s statement that later releases include it), and the affected ranges in the CVE record, since NVD and the CNA may differ.
